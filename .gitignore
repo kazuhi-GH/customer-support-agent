@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# Environment
+.env
+
+# Temp deploy/test scripts
+deploy_model*.py
+deploy_dataplane.py
+deploy_final.py
+deploy-body.json
+create_and_deploy.py
+create_japaneast.py
+test_endpoint.py
+test_run.py
+ai-resource.json
+connection.yml
+.deployignore
