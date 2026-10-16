@@ -1,4 +1,7 @@
+import os
 import unittest
+
+os.environ.setdefault("PROJECT_ENDPOINT", "https://example.services.ai.azure.com/api/projects/test")
 
 from azure.ai.projects.models import WebSearchTool
 
