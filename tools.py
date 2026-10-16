@@ -5,7 +5,7 @@
 """
 
 import json
-from azure.ai.projects.models import FunctionTool, Tool
+from azure.ai.projects.models import FunctionTool, Tool, WebSearchTool
 
 # ---------------------------------------------------------------------------
 # モック データ（実運用ではDB/APIに置き換え）
@@ -158,6 +158,7 @@ TOOL_DEFINITIONS: list[Tool] = [
         },
         strict=True,
     ),
+    WebSearchTool(external_web_access=True, search_context_size="high"),
 ]
 
 # 関数名 → 実装のマッピング
