@@ -3,7 +3,7 @@ import unittest
 
 os.environ.setdefault("PROJECT_ENDPOINT", "https://example.services.ai.azure.com/api/projects/test")
 
-from azure.ai.projects.models import WebSearchTool
+from azure.ai.projects.models import MCPTool, WebSearchTool
 
 from agent import SYSTEM_INSTRUCTIONS
 from tools import TOOL_DEFINITIONS
@@ -21,6 +21,16 @@ class WebSearchToolTests(unittest.TestCase):
         self.assertIn("web_search", SYSTEM_INSTRUCTIONS)
         self.assertIn("Microsoft Learn", SYSTEM_INSTRUCTIONS)
         self.assertIn("リンク", SYSTEM_INSTRUCTIONS)
+
+    def test_microsoft_learn_mcp_is_registered(self):
+        mcp_tools = [tool for tool in TOOL_DEFINITIONS if isinstance(tool, MCPTool)]
+
+        self.assertEqual(len(mcp_tools), 1)
+        self.assertEqual(mcp_tools[0].server_label, "microsoft_learn")
+        self.assertEqual(mcp_tools[0].server_url, "https://learn.microsoft.com/api/mcp")
+        self.assertEqual(mcp_tools[0].require_approval, "never")
+        self.assertIn("microsoft_learn", SYSTEM_INSTRUCTIONS)
+        self.assertIn("Azure サポート", SYSTEM_INSTRUCTIONS)
 
 
 if __name__ == "__main__":
