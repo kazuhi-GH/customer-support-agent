@@ -5,7 +5,7 @@
 """
 
 import json
-from azure.ai.projects.models import FunctionTool, Tool, WebSearchTool
+from azure.ai.projects.models import FunctionTool, MCPTool, Tool, WebSearchTool
 
 # ---------------------------------------------------------------------------
 # モック データ（実運用ではDB/APIに置き換え）
@@ -157,6 +157,11 @@ TOOL_DEFINITIONS: list[Tool] = [
             "additionalProperties": False,
         },
         strict=True,
+    ),
+    MCPTool(
+        server_label="microsoft_learn",
+        server_url="https://learn.microsoft.com/api/mcp",
+        require_approval="never",
     ),
     WebSearchTool(external_web_access=True, search_context_size="high"),
 ]
